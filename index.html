@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pace JS | Preloader</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="pace.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-bez@1.0.11/src/jquery.bez.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="fontawesome-free-5.12.1-web/fontawesome-free-5.12.1-web/css/all.css">
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: "montserrat",sans-serif;
+      }
+      html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    font-family: "Monument Extended";
+    background: #e3e3e3;
+}
+
+h1 {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #101010;
+}
+
+body{
+  margin:0px;
+  padding:0px;
+}
+
+.pace {
+  pointer-events: none;
+  user-select: none;
+  z-index: 2000;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  border: 0px;
+  height: 1px;
+  overflow: hidden;
+  background:#1b1b1b;
+}
+
+.pace .pace-progress {
+  box-sizing: border-box;
+  transform: translate3d(0, 0, 0);
+  max-width: 400px;
+  position: fixed;
+  z-index: 2000;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  height: 100%;
+  width: 100%;
+  background: grey;
+}
+
+.pace.pace-inactive {
+  display: none;
+}
+
+#preloader{
+  width:100%;
+  height:100vh;
+  background:#101010;
+  overflow:hidden;
+  position:fixed;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.p {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+
+      .header{
+        height: 100px;
+        background: #712416;
+        padding: 0 20px;
+        color: #fff;
+      }
+      .logo{
+        line-height: 100px;
+        float: left;
+        text-transform: uppercase;
+      }
+      
+      .menu{
+        float: right;
+        line-height: 100px;
+      }
+      .menu a{
+        color: #fff;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 0 10px;
+        transition: 0.4s;
+      }
+      .show-menu-btn,.hide-menu-btn{
+        transition: 0.4s;
+        font-size: 30px;
+        cursor: pointer;
+        display: none;
+      }
+      .show-menu-btn{
+        float: right;
+      }
+      .show-menu-btn i{
+        line-height: 100px;
+      }
+      .menu a:hover,
+      .show-menu-btn:hover,
+      .hide-menu-btn:hover{
+        color:black;
+      }
+      
+      #chk{
+        position: absolute;
+        visibility: hidden;
+        z-index: -1111;
+      }
+      
+      .content{
+        padding: 0 20px;
+      }
+      .content img{
+        width: 100%;
+        max-width: 700px;
+        margin: 20px 0;
+      }
+      .content p{
+        text-align: justify;
+      }
+      
+      @media screen and (max-width:800px) {
+        .show-menu-btn,.hide-menu-btn{
+          display: block;
+        }
+        .menu{
+          position: fixed;
+          width: 100%;
+          height: 100vh;
+          background:#000000;
+          right: -100%;
+          top: 0;
+          text-align: center;
+          padding: 80px 0;
+          line-height: normal;
+          transition: 0.7s;
+        }
+        .menu a{
+          display: block;
+          padding: 20px;
+        }
+        .menu a:hover{
+            color:#712416;
+        }
+        .hide-menu-btn{
+          position: absolute;
+          top: 40px;
+          right: 40px;
+        }
+        .hide-menu-btn:hover{
+            color:#712416;
+        }
+        #chk:checked ~ .menu{
+          right: 0;
+        }
+      }
+      footer{text-align: center; background-color: #712416; color: white;}
+      #icons{
+        padding: 14px;
+    
+      }
+      .email{
+        text-decoration: none!important;
+        cursor: pointer;
+      }
+      a:-webkit-any-link { color:white; }
+      .content{
+        background:#712416;
+        color:white;
+        padding-bottom: 40px;
+      }
+      .force-white{
+			 color: white !important;
+		 }
+    </style>
+
+  </head>
+  <body>
+<div id="preloader">
+            <div class="p">LOADING</div>
+        </div>
+  <div class="header">
+    <h2 class="logo">Vadodara Marathon</h2>
+    <input type="checkbox" id="chk">
+    <label for="chk" class="show-menu-btn">
+      <i class="fas fa-ellipsis-h"></i>
+    </label>
+
+    <ul class="menu">
+      <a href="#">Home</a>
+      <a href="Registration.php">Register</a>
+      <a href="login.php">Login</a>
+      <a href="AboutUs/aboutus.html">About Us</a>
+      <a href="#footer">Contact</a>
+      <label for="chk" class="hide-menu-btn">
+        <i class="fas fa-times"></i>
+      </label>
+    </ul>
+  </div>
+  <br>
+  <hr color='#712416'>
+<br>
+<div class="content">
+    
+    <center>
+      <img src="us1.png" alt="">
+    </center>
+    <br>
+    <h2 style="text-decoration: solid;">Vadodara Marathon</h2>
+    <br>
+    <div style = "font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+    <p>
+        Vadodara Marathon aims to be a facilitator for promoting civic causes by encouraging individuals,
+         corporates and social organizations to collaborate with shared time and resources. 
+         VM is committed to enhancing and promoting health and wellness of the individual and
+          nation at large through the joy of the sport of running. The most awaited sporting event
+           of the season, MG Vadodara International Marathon is here. The 9th Edition has a Time and 
+           Pace for everyone. More than just a Marathon, VM supports Sports, Seva, Swachhta and Sahyog.
+            Choose your Cause Choose your Run.
+            
+    </p>
+    <br>
+    <p>
+        Vadodara Marathon was incepted in 2009 and is an independent Chapter-25 Non-Profit
+         Company that undertakes the activity of conducting annual marathons in Vadodara. 
+    </p>
+    <br>
+    <p
+    >
+    VM is accredited to Association of International Marathons and Distance Races (AIMS) and BDAAA (Baroda District Amateur Athletics Association). It is the largest sporting event in Gujarat.
+
+    Each edition of VM attracts elite professional runners from all over the world and from India; along with citizens from cities and towns of Gujarat. 
+    </p><br>
+    <p>
+        VM is committed to “Sports with Seva and Swachchata”, and supports local social and civic causes.
+
+        VM enthuses and encourages citizens to adopt a fitness oriented and healthy lifestyle.
+        
+        
+    </p><br>
+    <p>
+        Vadodara Marathon has successfully conducted 6 editions of the 21.1 KM Marathon, along with shorter di.stances and exciting pre events, since its inception in 2009
+
+        The first 4 editions were flagged off by then Hon. Chief Minister of Gujarat (now Hon. Prime Minister) Shri Narendrabhai Modi. The 5th edition, held on 7th February 2016, was flagged off by former Hon. Chief Minister, Smt Anandiben Patel. The 6th editin which was held on 5th Feb 2017 was flagged off by Hon. Chief Minister, Shri Vijay Bhai Rupani.
+        
+        Over the years VM has evolved into a “Citizens Marathon”, with participation of people from all walks of life, from 14 year olds to senior citizens. VM truly embodies the essence of "MY CITY MY MARATHON"
+        
+    </p>
+    </div>
+  </div>
+  <br>
+  <hr color='#712416'>
+    <br>
+    <div class="center">
+      <footer class="footer-distributed" name="footer" id="footer">
+        <i class="fas fa-person-booth fa-2x" id="icons"></i>
+        <div class="footer-left">
+          <h3>About<span> Vadodara Marathon</span></h3>
+          <p class="footer-company-name">2020 Copyright &copy;Yasin Patel</p>
+        </div>
+   
+        <div class="footer-center">
+          <div>
+            <i class="fas fa-map-marker-alt fa-2x" id="icons"></i><p>Office:</p>
+              <p><span>Vasna Bhayli Road, Vadodara -391 410 Gujarat, India</span>
+              </p>
+          </div>
+   
+          <div>
+            <i class="fa fa-phone fa-2x" id="icons"></i><p>Enquiry:</p>
+            <p>+91-7283926914</p>
+          </div>
+          <div>
+            <i class="fa fa-envelope fa-2x" id="icons"></i>
+            <p>19102042@nuv.ac.in</p>
+          </div>
+        </div>
+        <div class="footer-right">
+          <p class="footer-company-about">
+            <br>
+          <div class="footer-icons">
+            <a href="https://www.facebook.com/VadodaraMarathon "><i class="fab fa-facebook-square fa-2x force-white" id="icons"></i></a>
+            <a href="https://twitter.com/VMIndia"><i class="fab fa-twitter fa-2x force-white" id="icons"></i></a>
+            <a href="https://www.instagram.com/vadodara_marathon/"><i class="fab fa-instagram fa-2x force-white" id="icons"></i></a>
+            <a href="#"><i class="fab fa-linkedin fa-2x force-white" id="icons"></i></a>
+            <a href="https://www.youtube.com/channel/UCjcIUmGck20EGFZ8NbNRsPg " ><i class="fab fa-youtube fa-2x force-white" id="icons"></i></a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script>
+
+        paceOptions = {
+        ajax: true,
+        document: true,
+        eventLag: false
+        };
+
+        Pace.on('done', function() {
+        $('.p').delay(500).animate({top: '30%', opacity: '0'}, 3000, $.bez([0.19,1,0.22,1]));
+
+
+        $('#preloader').delay(1500).animate({top: '-100%'}, 2000, $.bez([0.19,1,0.22,1]));
+
+        TweenMax.from(".title", 2, {
+             delay: 1.8,
+                  y: 10,
+                  opacity: 0,
+                  ease: Expo.easeInOut
+            })
+       });
+
+      </script>
+  </body>
+</html>
